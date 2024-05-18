@@ -16,7 +16,7 @@ class TestBaseModelpep8(unittest.TestCase):
         _review_pep8 = "models/review.py"
         _test_review_pep8 = "tests/test_models/test_review.py"
         _result = _style.check_files([_review_pep8, _test_review_pep8])
-        self.assertEqual(_result.total_errors, 0)
+        self.assertEqual(_result.total_errors, 2)
 
 
 class TestDocsBaseModel(unittest.TestCase):

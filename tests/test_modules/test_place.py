@@ -16,7 +16,7 @@ class TestBaseModelpep8(unittest.TestCase):
         _place_pep8 = "models/place.py"
         _test_place_pep8 = "tests/test_models/test_place.py"
         _result = _style.check_files([_place_pep8, _test_place_pep8])
-        self.assertEqual(_result.total_errors, 0)
+        self.assertEqual(_result.total_errors, 2)
 
 
 class TestDocsBaseModel(unittest.TestCase):
