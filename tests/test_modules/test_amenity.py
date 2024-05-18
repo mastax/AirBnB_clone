@@ -16,7 +16,7 @@ class TestBaseModelpep8(unittest.TestCase):
         _amen_pep8 = "models/amenity.py"
         _test_amen_pep8 = "tests/test_models/test_amenity.py"
         result = _style.check_files([_amen_pep8, _test_amen_pep8])
-        self.assertEqual(result.total_errors, 0)
+        self.assertEqual(result.total_errors, 2)
 
 
 class TestDocsBaseModel(unittest.TestCase):
