@@ -15,7 +15,7 @@ class TestBaseModelpep8(unittest.TestCase):
         _style = pep8.StyleGuide(quiet=True)
         _user_pep8 = "models/user.py"
         _test_user_pep8 = "tests/test_models/test_user.py"
-        _result = style.check_files([_user_pep8, _test_user_pep8])
+        _result = _style.check_files([_user_pep8, _test_user_pep8])
         self.assertEqual(_result.total_errors, 0)
 
 

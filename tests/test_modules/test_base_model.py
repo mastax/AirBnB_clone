@@ -45,10 +45,10 @@ class Test_Base_Model_outputs(unittest.TestCase):
         test_save Method To Test If Each Time that The Instance Is
         Saved The update_at Attribute Is Updated
         """
-        _instance1 = BaseModel()
-        _attr_updated_before_save = _instance1.updated_at
-        _instance1.save()
-        _attr_updated_after_save = _instance1.updated_at
+        instance1 = BaseModel()
+        _attr_updated_before_save = instance1.updated_at
+        instance1.save()
+        _attr_updated_after_save = instance1.updated_at
         self.assertNotEqual(_attr_updated_before_save, _attr_updated_after_save)
 
     def test_to_dict(self):
