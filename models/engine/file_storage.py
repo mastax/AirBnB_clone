@@ -1,39 +1,55 @@
 #!/usr/bin/python3
+"""Module That Contain FileStorage Class"""
 
 import json
-import os
+import os.path
+from models.user import User
+from models.city import City
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.amenity import Amenity
+from models.base_model import BaseModel
 
-class FileStorege:
-    """Serializes instances to a JSON file and deserializes JSON file to instances."""
+
+class FileStorage():
+    """
+    FileStorage Class That Performs Actions
+    Within Objects Created And json File
+    """
+
     __file_path = "file.json"
     __objects = {}
 
-def all(self):
-    """Returns the dixtionary __objects."""
-    return self.__objects
+    def all(self):
+        """All Method Returns The __Objects Dictionary"""
+        return FileStorage.__objects
 
-def new(self, obj):
-    """Returns the dictionary __objects."""
-    key = "{}.{}".format(obj.__class__.__name__, obj.id)
-    self.__objects[key] = obj
+    def new(self, _obj):
+        """
+        New Method Update __Objects Dictionary
+        Each Time That A New Object Is Created
+        """
+        if _obj:
+            _key = type(_obj).__name__ + "." + _obj.id
+            FileStorage.__objects[_key] = _obj
 
-def save(self):
-    """Serializes __objects to the JSON file (path: __file_path)."""
-    data = {}
-    for key, obj in self.__objects.items():
-        data[key] = obj.to_dict()
+    def save(self):
+        """
+        Save Method That Saves All Objects Inside A File In JSON Represetation
+        """
+        _d = {}
+        for _key, _obj in FileStorage.__objects.items():
+            _d[key] = _obj.to_dict()
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as json_f:
+            json.dump(_d, json_f)
 
-    with open(self.__file_path,"w") as file:
-        json.dump(data, file)
-    
-def reload(self):
-    """Deserializes the JSON file to __objects."""
-    if os.path.exists(self.__file_path):
-        with open(self.__file_path, "r") as file:
-            data = json.load(file)
-            for key, value in data.items():
-                class_name, obj_id = key.split(".")
-                module_name = "models." + class_name
-                module = __import__(module_name, fromlist=[class_name])
-                cls = getattr(module, class_name)
-                self.__object[key] = cls(**value)
+    def reload(self):
+        """
+        Reload Method That Update __Objects Dictionary From JSON File
+        """
+        if os.path.isfile(FileStorage.__file_path):
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as js_f:
+                for _key, _obj in json.loads(js_f.read()).items():
+                    _obj = eval(_obj['__class__'])(**_obj)
+                    FileStorage.__objects[_key] = _obj
