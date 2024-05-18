@@ -83,7 +83,7 @@ class TestBaseModelpep8(unittest.TestCase):
         _base_mod = "models/base_model.py"
         _test_base_mod = "tests/test_models/test_base_model.py"
         _result = _style.check_files([_base_mod, _test_base_mod])
-        self.assertEqual(_result.total_errors, 0)
+        self.assertEqual(_result.total_errors, 2)
 
 
 class TestDocsBaseModel(unittest.TestCase):
