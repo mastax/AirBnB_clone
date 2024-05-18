@@ -40,7 +40,7 @@ class FileStorage():
         """
         _d = {}
         for _key, _obj in FileStorage.__objects.items():
-            _d[key] = _obj.to_dict()
+            _d[_key] = _obj.to_dict()
         with open(FileStorage.__file_path, "w", encoding="utf-8") as json_f:
             json.dump(_d, json_f)
 
